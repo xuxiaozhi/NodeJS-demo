@@ -10,4 +10,8 @@ app.use(express.static("./public"));
 app.get("/",router.showIndex);
 app.get("/:albumName",router.showAlbum);
 
+app.use(function (req,res) {
+    res.render('404');
+})
+
 app.listen(3000);

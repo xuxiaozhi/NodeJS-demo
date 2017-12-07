@@ -1,5 +1,15 @@
+var file=require("../models/file.js");
+
 exports.showIndex=function (req,res) {
-    res.render("index");
+    file.getAlbums(function (err,allAlbums) {
+        if(err){
+            res.send(err);
+            return;
+        }
+        res.render("index",{
+            "albums":allAlbums
+        });
+    })
 }
 
 exports.showAlbum=function (req,res) {
