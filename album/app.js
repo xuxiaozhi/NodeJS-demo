@@ -7,6 +7,7 @@ app.set("view engine","ejs");
 
 //路由中间件
 app.use(express.static("./public"));
+app.use(express.static("./uploads"));
 app.get("/",router.showIndex);
 app.get("/:albumName",router.showAlbum);
 

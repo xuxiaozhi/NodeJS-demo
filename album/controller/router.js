@@ -12,6 +12,16 @@ exports.showIndex=function (req,res) {
     })
 }
 
-exports.showAlbum=function (req,res) {
-    res.send("相册"+req.params.albumName);
+exports.showAlbum=function (req,res,next) {
+    var albumName=req.params.albumName;
+    file.getAllImgByAlbumName(albumName,function (err,imagesArray) {
+        if(err){
+            next();
+            return;
+        }
+        res.render('album',{
+            "albumname":albumName,
+            "images":imagesArray
+        })
+    })
 }
